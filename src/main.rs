@@ -6,6 +6,8 @@ struct Config {
 }
 
 fn main() {
+    let config: Config = confy::load("i-opener", None).unwrap();
+
     let mut connection = i3ipc::I3Connection::connect().unwrap();
     let workspaces = connection.get_workspaces().unwrap().workspaces;
     let focused_ws = workspaces.into_iter().find(|ws| ws.focused).unwrap();
