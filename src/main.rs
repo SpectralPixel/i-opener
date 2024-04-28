@@ -24,5 +24,7 @@ fn main() {
         Some(app) => app.1.clone().into_rust::<String>().unwrap(),
         None => config.fallback,
     };
-    println!("{}", app_to_open);
+
+    let command = format!("exec {}", app_to_open);
+    connection.run_command(&command).unwrap();
 }
