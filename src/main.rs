@@ -1,3 +1,3 @@
 fn main() {
-    println!("Hello, world!");
+    let connection = i3ipc::I3Connection::connect().unwrap();
 }
