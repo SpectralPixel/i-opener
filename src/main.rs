@@ -1,4 +1,4 @@
-use serde::{Deserialize, Serialize};
+use serde::{Deserialize, Deserializer, Serialize};
 
 const APP_NAME: &str = "i-opener";
 
@@ -18,6 +18,9 @@ fn main() {
     let mut connection = i3ipc::I3Connection::connect().unwrap();
     let workspaces = connection.get_workspaces().unwrap().workspaces;
     let focused_ws = workspaces.into_iter().find(|ws| ws.focused).unwrap();
+
+    let app_to_open = config.bindings.iter().find(|app| focused_ws.name == *app.0.clone().into_rust::<String>().unwrap());
+    dbg!(app_to_open);
 
     match focused_ws.name.as_ref() {
         "1" => println!("foo"),
