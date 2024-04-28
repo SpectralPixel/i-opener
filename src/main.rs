@@ -1,4 +1,4 @@
-use serde::{Deserialize, Deserializer, Serialize};
+use serde::{Deserialize, Serialize};
 
 const APP_NAME: &str = "i-opener";
 
@@ -20,11 +20,9 @@ fn main() {
     let focused_ws = workspaces.into_iter().find(|ws| ws.focused).unwrap();
 
     let app_to_open = config.bindings.iter().find(|app| focused_ws.name == *app.0.clone().into_rust::<String>().unwrap());
-    dbg!(app_to_open);
-
-    match focused_ws.name.as_ref() {
-        "1" => println!("foo"),
-        "2" => println!("bar"),
-        _ => println!("baz"),
-    }
+    let app_to_open = match app_to_open {
+        Some(app) => app.1.clone().into_rust::<String>().unwrap(),
+        None => config.fallback,
+    };
+    println!("{}", app_to_open);
 }
