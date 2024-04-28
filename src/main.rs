@@ -3,6 +3,9 @@ fn main() {
     let workspaces = connection.get_workspaces().unwrap().workspaces;
     let focused_ws = workspaces.into_iter().find(|ws| ws.focused).unwrap();
 
-    // debug
-    println!("{}", focused_ws.name);
+    match focused_ws.name.as_ref() {
+        "1" => println!("foo"),
+        "2" => println!("bar"),
+        _ => println!("baz"),
+    }
 }
