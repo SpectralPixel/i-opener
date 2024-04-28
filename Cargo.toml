@@ -8,3 +8,4 @@ edition = "2021"
 [dependencies]
 i3ipc = "0.10.1"
 ron = "0.8.1"
+serde = { version = "1.0.199", features = ["derive"] }
