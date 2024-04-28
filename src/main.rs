@@ -1,3 +1,10 @@
+use serde::{Deserialize, Serialize};
+#[derive(Deserialize, Serialize, Default)]
+struct Config {
+    bindings: ron::Map,
+    fallback: String,
+}
+
 fn main() {
     let mut connection = i3ipc::I3Connection::connect().unwrap();
     let workspaces = connection.get_workspaces().unwrap().workspaces;
